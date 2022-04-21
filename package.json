@@ -1,0 +1,16 @@
+{
+  "name": "unityquestionsenteryform",
+  "version": "1.0.0",
+  "description": "This webapp will have a form for unity questions input",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@azure/cosmos": "^3.15.1",
+    "ejs": "^3.0.2",
+    "express": "^4.17.3"
+  }
+}
