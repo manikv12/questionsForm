@@ -1,4 +1,5 @@
-
+const config = require("../config");
+const QuestionsDao = require('../models/questionsDao');
 
 // Functions for the routes
 
