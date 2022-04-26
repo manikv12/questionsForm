@@ -5,13 +5,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" category="viewport">
 
-  <title>NLS Bootstrap Template - Index</title>
+  <title>Unity Question Entry Form</title>
   <meta content="" category="description">
   <meta content="" category="keywords">
 
   <!-- Favicons -->
-  <link href="/img/favicon.png" rel="icon">
-  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../public/img/NLSLogo.png" rel="icon" sizes="16x16">
+  <link href="../public/img/NLSLogo.png" rel="apple-touch-icon" sizes="16x16">
 
   <!-- Google Fonts -->
   <link
@@ -41,7 +41,7 @@
               <p class="mb-4 text-muted">Enter the questions for the game project here</p>
             </div>
 
-            <form id="contactForm" action="/" method="POST">
+            <form id="contactForm" action="/form" method="POST">
 
               <!-- Category Input -->
               <div class="form-floating mb-3">
@@ -56,7 +56,7 @@
               <!-- Difficulty Input -->
               <div class="form-floating mb-3">
                 <input class="form-control" id="difficulty" type="difficulty" placeholder="difficulty "
-                  data-sb-validations="required" name="Difficulty"/>
+                  data-sb-validations="required" name="Difficulty" />
                 <label for="difficulty">Difficulty</label>
                 <small id="difficulty" class="form-text text-muted">Question difficulty: Easy, Medium or Hard</small>
                 <div class="invalid-feedback" data-sb-feedback="difficulty:required">Difficulty is required.</div>
@@ -65,7 +65,7 @@
               <!-- Question Input -->
               <div class="form-floating mb-3">
                 <input class="form-control" id="question" type="question" placeholder="question "
-                  data-sb-validations="required" name="Question"/>
+                  data-sb-validations="required" name="Question" />
                 <label for="question">Question</label>
                 <small id="question" class="form-text text-muted">Enter your question</small>
                 <div class="invalid-feedback" data-sb-feedback="question:required">Question is required.</div>
@@ -85,7 +85,7 @@
               <!-- Answer Input -->
               <div class="form-floating mb-3">
                 <input class="form-control" id="answer" type="number" placeholder="question "
-                  data-sb-validations="required" min="1" max="6" name="Answer"/>
+                  data-sb-validations="required" min="1" max="6" name="Answer" />
                 <label for="answer">Answer</label>
                 <small id="answer" class="form-text text-muted">Enter the option number for the answer</small><br>
                 <small id="answer" class="form-text text-muted">True: 1 , False: 2</small>
@@ -122,6 +122,14 @@
 
   <!-- CDN Link to SB Forms Scripts -->
   <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  <script>
+    document.getElementById('options').addEventListener('keydown', function (event) {
+      if (event.keyCode === 13 && !event.shiftKey) {
+        event.preventDefault();
+        return false;
+      }
+    });
+  </script>
 
 </body>
 

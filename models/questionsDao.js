@@ -1,16 +1,18 @@
 // @ts-check
 const CosmosClient = require('@azure/cosmos').CosmosClient
-const debug = require('debug')('question:QuestionsDao')
+const debug = require('debug')('question:QuestionsDao');
+const config = require('../config');
+
 
 // For simplicity we'll set a constant partition key
-const partitionKey = '0'
+const partitionKey = config.partitionKey;
 class QuestionsDao {
     /**
-     * Manages reading, adding, and updating Tasks in Cosmos DB
-     * @param {CosmosClient} cosmosClient
-     * @param {string} databaseId
-     * @param {string} containerId
-     */
+    * Manages reading, adding, and updating Tasks in Cosmos DB
+    * @param {CosmosClient} cosmosClient
+    * @param {string} databaseId
+    * @param {string} containerId
+    */
     constructor(cosmosClient, databaseId, containerId) {
         this.client = cosmosClient
         this.databaseId = databaseId
@@ -21,18 +23,18 @@ class QuestionsDao {
     }
 
     async init() {
-        debug('Setting up the database...')
-        const dbResponse = await this.client.databases.createIfNotExists({
+         debug('Setting up the database...')
+        this.client.databases.createIfNotExists({
             id: this.databaseId
         })
-        this.database = dbResponse.database
-        debug('Setting up the database...done!')
-        debug('Setting up the container...')
-        const coResponse = await this.database.containers.createIfNotExists({
+        this.database = this.client.database(this.databaseId);
+         debug('Setting up the database...done!')
+         debug('Setting up the container...')
+        this.database.containers.createIfNotExists({
             id: this.collectionId
         })
-        this.container = coResponse.container
-        debug('Setting up the container...done!')
+        this.container = this.database.container(this.collectionId)
+         debug('Setting up the container...done!')
     }
 
     async find(querySpec) {
@@ -69,5 +71,5 @@ class QuestionsDao {
         return resource
     }
 }
-``
+
 module.exports = QuestionsDao

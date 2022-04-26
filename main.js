@@ -11,7 +11,8 @@ const QuestionsDao = require('./models/questionsDao');
 const { endpoint, key, databaseId, containerId } = config;
 
 
-// Routes
+// test
+
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -27,37 +28,23 @@ app.set('view engine', 'html');
 
 
 // Port number for the server
-const port = 3000 || process.env.PORT; 
+const port = 3000 || process.env.PORT;
 
 
-async function main(){
+async function main() {
 
 
-    // Create a new instance of the Cosmos Client
-    const client = new CosmosClient({ endpoint, key });
     
-    // Create a new instance of the Questions DAO class
-    const questionsDao = new QuestionsDao(client, config.databaseId, config.containerId)
-    questionsDao
-        .init(err => {
-            console.error(err)
-        })
-        .catch(err => {
-            console.error(err)
-            console.error(
-                'Shutting down because there was an error settinig up the database.'
-            )
-            process.exit(1)
-        })
 
     var formApp = require('./routes/formApp.js');
+
     // Hompage
-    app.use('/', formApp);
+    app.use('/form', formApp);
 
 
     // Start server
     app.listen(port, () => {
-        console.log(`Example app listening at http://localhost:${port}`)
+        console.log(`Example app listening at http://localhost:${port}/form`)
     })
 
 }
